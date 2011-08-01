@@ -35,7 +35,7 @@
     <DocumentationFile>bin\Release\NServiceBus.ObjectBuilder.Autofac.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=1.4.1.487, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+    <Reference Include="Autofac, Version=2.5.1.827, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\external-bin\Autofac.dll</HintPath>
     </Reference>

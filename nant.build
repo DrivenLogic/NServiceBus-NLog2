@@ -276,7 +276,8 @@
     <!-- Copy the container assemblies to the output directory -->
     <copy todir="${container.output.dir}">
       <fileset basedir="${container.build.dir}">
-        <include name="NServiceBus.ObjectBuilder.Autofac.dll" />
+        <!-- CH: Exclude Autofac 1.x project and assembly output -->
+        <!--<include name="NServiceBus.ObjectBuilder.Autofac.dll" />-->
         <include name="NServiceBus.ObjectBuilder.Autofac2.dll" />
         <include name="NServiceBus.ObjectBuilder.CastleWindsor.dll" />
         <include name="NServiceBus.ObjectBuilder.StructureMap.dll" />
@@ -494,7 +495,8 @@
     </copy>
 
     <!-- Prepare Containers -->
-    <mkdir dir="${binaries.dir}\containers\autofac" />
+    <!-- CH: Exclude Autofac 1.x project and assembly output -->
+    <!--<mkdir dir="${binaries.dir}\containers\autofac" />
     <copy todir="${binaries.dir}\containers\autofac">
       <fileset basedir="${lib.dir}">
         <include name="Autofac*.*" />
@@ -504,7 +506,7 @@
       <fileset basedir="${container.build.dir}">
         <include name="NServiceBus.ObjectBuilder.Autofac.dll" />
       </fileset>
-    </copy>
+    </copy>-->
     
     <mkdir dir="${binaries.dir}\containers\autofac2" />
 	<copy todir="${binaries.dir}\containers\autofac2">
