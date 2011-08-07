@@ -1,4 +1,5 @@
-using Common.Logging;
+
+using NLog;
 using NServiceBus.Messages;
 
 namespace NServiceBus.Unicast.Distributor
@@ -32,7 +33,6 @@ namespace NServiceBus.Unicast.Distributor
         /// </summary>
         public virtual IWorkerAvailabilityManager WorkerManager { get; set; }
 
-
-        private readonly static ILog logger = LogManager.GetLogger(typeof(ReadyMessageHandler));
+        private static Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

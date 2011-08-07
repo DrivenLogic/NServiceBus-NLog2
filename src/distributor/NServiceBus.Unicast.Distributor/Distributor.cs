@@ -1,5 +1,5 @@
 using System.Threading;
-using Common.Logging;
+using NLog;
 using NServiceBus.Grid.MessageHandlers;
 using NServiceBus.Unicast.Transport;
 
@@ -103,7 +103,8 @@ namespace NServiceBus.Unicast.Distributor
             MessageBusTransport.AbortHandlingCurrentMessage();
         }
 
-        private static readonly ILog logger = LogManager.GetLogger(typeof (Distributor));
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private volatile bool disabled;
     }
 }

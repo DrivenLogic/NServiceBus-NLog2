@@ -204,7 +204,7 @@
   <target name="compile_core" depends="compile_main">
     <!-- NServiceBus.Core -->
     <foreach 	item="String"
-					in="utils,ObjectBuilder,messageInterfaces,encryption,impl\messageInterfaces,config,logging,unicast,impl\unicast\NServiceBus.Unicast.Msmq,impl\unicast\NServiceBus.Unicast.Subscriptions.Msmq,impl\encryption,impl\Serializers,impl\ObjectBuilder.Common,impl\Sagas,grid,impl\SagaPersisters\NHibernateSagaPersister,impl\unicast\NServiceBus.Unicast.Subscriptions.NHibernate,integration"
+					in="utils,ObjectBuilder,messageInterfaces,encryption,impl\messageInterfaces,config,unicast,impl\unicast\NServiceBus.Unicast.Msmq,impl\unicast\NServiceBus.Unicast.Subscriptions.Msmq,impl\encryption,impl\Serializers,impl\ObjectBuilder.Common,impl\Sagas,grid,impl\SagaPersisters\NHibernateSagaPersister,impl\unicast\NServiceBus.Unicast.Subscriptions.NHibernate,integration"
 					delim=","
 					property="pathToBuild">
 		<property name="project.config_to_build" value="${project.config}" dynamic="true" />

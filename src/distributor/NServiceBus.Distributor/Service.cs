@@ -13,7 +13,6 @@ namespace NServiceBus.Distributor
         public void Init()
         {
             var configure = Configure.With()
-                .Log4Net()
                 .DefaultBuilder()
                 .MsmqTransport()
                     .IsTransactional(true)
