@@ -10,7 +10,6 @@ namespace WebService1
         protected void Application_Start(object sender, EventArgs e)
         {
             Bus = Configure.WithWeb()
-                .Log4Net()
                 .DefaultBuilder()
                 .XmlSerializer()
                 .MsmqTransport()

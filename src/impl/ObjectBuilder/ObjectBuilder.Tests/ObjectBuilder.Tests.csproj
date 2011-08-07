@@ -57,12 +57,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\external-bin\Autofac2\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\..\external-bin\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="NBehave.Spec.NUnit, Version=0.4.0.0, Culture=neutral, PublicKeyToken=d421feca0f4a05f6, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\tools\NBehave\NBehave.Spec.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\..\external-bin\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

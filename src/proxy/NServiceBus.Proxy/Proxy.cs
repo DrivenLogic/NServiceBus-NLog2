@@ -1,5 +1,5 @@
 using System;
-using log4net;
+using NLog;
 using NServiceBus.Unicast.Subscriptions;
 using NServiceBus.Unicast.Transport;
 using NServiceBus.Unicast;
@@ -140,6 +140,6 @@ namespace NServiceBus.Proxy
             return Guid.NewGuid() + "\\0";
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (Proxy));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

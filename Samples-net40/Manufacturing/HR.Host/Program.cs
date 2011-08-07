@@ -1,5 +1,5 @@
 using System;
-using log4net;
+using NLog;
 using NServiceBus;
 
 namespace HR.Host
@@ -11,7 +11,6 @@ namespace HR.Host
             try
             {
                 var bus = NServiceBus.Configure.With()
-                    .Log4Net()
                     .DefaultBuilder()
                     .XmlSerializer()
                     .MsmqTransport()

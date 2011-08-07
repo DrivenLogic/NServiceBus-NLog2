@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using log4net;
+using NLog;
 using NServiceBus.Unicast.Transport;
 
 namespace NServiceBus.Gateway
@@ -75,6 +75,6 @@ namespace NServiceBus.Gateway
             }
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Gateway");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

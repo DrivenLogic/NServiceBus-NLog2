@@ -1,5 +1,6 @@
-using log4net;
+
 using MyMessages;
+using NLog;
 using NServiceBus;
 
 namespace Subscriber2
@@ -13,6 +14,6 @@ namespace Subscriber2
             Logger.Info(string.Format("Message duration: {0}.", message.Duration));
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (EventMessageHandler));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

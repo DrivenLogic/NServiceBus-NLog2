@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using log4net;
+using NLog;
 using NServiceBus.Unicast.Transport;
 using System.IO;
 using NServiceBus.Unicast.Transport.Msmq;
@@ -133,6 +133,6 @@ namespace NServiceBus.Gateway
             Logger.Info("Http request processing complete.");
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Gateway");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

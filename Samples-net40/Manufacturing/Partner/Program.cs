@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using log4net;
+using NLog;
 using NServiceBus;
 using OrderService.Messages;
 

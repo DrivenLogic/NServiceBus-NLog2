@@ -1,5 +1,5 @@
 ﻿using System.Configuration;
-using log4net;
+using NLog;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.Unicast.Subscriptions.Msmq;
 using NServiceBus.Unicast.Transport.Msmq;
@@ -57,6 +57,6 @@ namespace NServiceBus.Proxy
             Logger.Info("Proxy successfully started");
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (EndpointConfig));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

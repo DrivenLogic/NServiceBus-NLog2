@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\binaries\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus, Version=1.9.3.41221, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.dll</HintPath>
@@ -45,20 +41,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.Core.dll</HintPath>
     </Reference>
-
     <Reference Include="NServiceBus.Host, Version=1.10.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
-      
     </Reference>
     <Reference Include="System.Xml.Linq">
-      
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
-      
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
