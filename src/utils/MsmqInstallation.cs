@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.ServiceProcess;
 using Microsoft.Win32;
-using Common.Logging;
+using NLog;
 
 namespace NServiceBus.Utils
 {
@@ -261,6 +261,6 @@ namespace NServiceBus.Utils
         const string Server2008OcSetupParams = "MSMQ-Server /passive";
         const string VistaOcSetupParams = "MSMQ-Container;" + Server2008OcSetupParams;
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Utils");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

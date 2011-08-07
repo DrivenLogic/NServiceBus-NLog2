@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Common.Logging;
+using NLog;
 using NServiceBus.Config.ConfigurationSource;
 using NServiceBus.ObjectBuilder;
 using System.IO;
@@ -230,6 +230,6 @@ namespace NServiceBus
         }
 
         private static Configure instance;
-        private static ILog Logger = LogManager.GetLogger("NServiceBus.Config");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

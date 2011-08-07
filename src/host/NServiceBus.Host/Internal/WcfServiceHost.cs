@@ -3,7 +3,7 @@ using System.Configuration;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Configuration;
-using log4net;
+using NLog;
 
 namespace NServiceBus.Host.Internal
 {
@@ -49,12 +49,12 @@ namespace NServiceBus.Host.Internal
             }
             if (!endpointAlreadyConfigured)
             {
-                logger.Debug("Endpoint for contract: " + contractType.Name + " is not found in configuration, going to add it programatically");
+                Logger.Debug("Endpoint for contract: " + contractType.Name + " is not found in configuration, going to add it programatically");
                 AddServiceEndpoint(contractType, binding, address);
             }
                 
         }
 
-        private readonly ILog logger = LogManager.GetLogger(typeof(WcfServiceHost));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

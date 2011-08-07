@@ -239,8 +239,6 @@
         <in>
           <items>
             <include name="${core.build.dir}\antlr*.dll" />
-            <include name="${core.build.dir}\common.logging.dll"/>
-            <include name="${lib.dir}\common.logging.log4net.dll"/>
             <include name="${core.build.dir}\Interop.MSMQ.dll" />
             <include name="${core.build.dir}\Spring.Core.dll"/>
             <include name="${core.build.dir}\NHibernate*.dll" />
@@ -484,7 +482,6 @@
     </copy>
     <copy todir="${binaries.dir}">
       <fileset basedir="${lib.dir}">
-        <include name="log4net.dll" />
         <include name="nunit.framework.dll" />
       </fileset>
     </copy>
@@ -648,8 +645,6 @@
 	  <copy todir="${release.dir}\dependencies" flatten="true">
 		  <fileset basedir="${trunk.dir}" >
 			  <include name="${core.build.dir}\antlr*.dll" />
-			  <include name="${core.build.dir}\common.logging.dll"/>
-			  <include name="${lib.dir}\common.logging.log4net.dll"/>
 			  <include name="${core.build.dir}\Interop.MSMQ.dll" />
 			  <include name="${core.build.dir}\AutoFac.dll"/>
 			  <include name="${core.build.dir}\Spring.Core.dll" />

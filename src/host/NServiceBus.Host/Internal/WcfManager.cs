@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using log4net;
+using NLog;
 
 namespace NServiceBus.Host.Internal
 {
@@ -74,8 +74,6 @@ namespace NServiceBus.Host.Internal
             return typeof(IWcfService<,>).MakeGenericType(args);
         }
 
-
-       
-        private readonly ILog logger = LogManager.GetLogger(typeof(WcfManager));
+        private static Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

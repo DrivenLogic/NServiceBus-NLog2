@@ -2,7 +2,8 @@ using System;
 using System.Messaging;
 using System.Net;
 using System.Security.Principal;
-using Common.Logging;
+using NLog;
+
 
 namespace NServiceBus.Utils
 {
@@ -11,7 +12,7 @@ namespace NServiceBus.Utils
     ///</summary>
     public class MsmqUtilities
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(MsmqUtilities));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
         private static readonly string LocalAdministratorsGroupName = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null).Translate(typeof(NTAccount)).ToString();
         private static readonly string LocalEveryoneGroupName = new SecurityIdentifier(WellKnownSidType.WorldSid, null).Translate(typeof(NTAccount)).ToString();
         private static readonly string LocalAnonymousLogonName = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null).Translate(typeof(NTAccount)).ToString();

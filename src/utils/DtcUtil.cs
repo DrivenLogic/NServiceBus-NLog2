@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceProcess;
-using Common.Logging;
 using Microsoft.Win32;
+using NLog;
 
 namespace NServiceBus.Utils
 {
@@ -66,6 +66,6 @@ namespace NServiceBus.Utils
         private static readonly ServiceController Controller = new ServiceController { ServiceName = "MSDTC", MachineName = "." };
         private static readonly List<string> RegValues = new List<string>(new[] {"NetworkDtcAccess", "NetworkDtcAccessOutbound", "NetworkDtcAccessTransactions", "XaTransactions"});
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Utils");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

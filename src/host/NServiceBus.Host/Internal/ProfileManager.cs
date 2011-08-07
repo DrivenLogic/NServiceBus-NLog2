@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using log4net;
+using NLog;
 using NServiceBus.Utils.Reflection;
 
 namespace NServiceBus.Host.Internal
@@ -128,6 +128,6 @@ namespace NServiceBus.Host.Internal
         }
 
         private static readonly IEnumerable<Type> DefaultProfile = new[] { typeof(Lite) };
-        private static ILog Logger = LogManager.GetLogger("NServiceBus.Host");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

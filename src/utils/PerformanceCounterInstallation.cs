@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using Common.Logging;
+using NLog;
 
 namespace NServiceBus.Utils
 {
@@ -37,6 +37,6 @@ namespace NServiceBus.Utils
             Logger.Debug("Installation of PerformanceCounters successful.");
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Utils");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

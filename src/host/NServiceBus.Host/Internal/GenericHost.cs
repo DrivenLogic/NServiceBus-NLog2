@@ -1,6 +1,6 @@
 using System;
 using System.Configuration;
-using log4net;
+using NLog;
 using Topshelf.Internal;
 using NServiceBus.Host.Internal.Arguments;
 
@@ -15,6 +15,9 @@ namespace NServiceBus.Host.Internal
         /// Event raised when configuration is complete
         /// </summary>
         public static event EventHandler ConfigurationComplete;
+
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Does startup work.
@@ -85,7 +88,7 @@ namespace NServiceBus.Host.Internal
             {
                 //we log the error here in order to avoid issues with non serializable exceptions
                 //going across the appdomain back to topshelf
-                LogManager.GetLogger(typeof(GenericHost)).Fatal(ex);
+                Logger.FatalException("Fatal in GenericHost", ex);
 
                 throw new Exception("Exception when starting endpoint, error has been logged. Reason: " + ex.Message);
             }

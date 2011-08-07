@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceProcess;
-using Common.Logging;
 using System.ComponentModel;
+using NLog;
 
 namespace NServiceBus.Utils
 {
@@ -65,6 +65,6 @@ namespace NServiceBus.Utils
             throw new InvalidOperationException(message, exception);
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger("NServiceBus.Utils");
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

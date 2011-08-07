@@ -1,6 +1,6 @@
 using System;
 using System.Threading;
-using Common.Logging;
+using NLog;
 
 namespace NServiceBus.Utils
 {
@@ -88,6 +88,6 @@ namespace NServiceBus.Utils
         private volatile bool stopRequested;
         private readonly object toLock = new object();
 
-        private readonly static ILog Logger = LogManager.GetLogger(typeof(WorkerThread));
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

@@ -1,13 +1,15 @@
-﻿using NServiceBus.Config;
+﻿using NLog;
+using NServiceBus.Config;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.Unicast.Subscriptions.Msmq;
 using System;
-using log4net;
 
 namespace NServiceBus.Host.Internal.ProfileHandlers
 {
     internal class IntegrationProfileHandler : IHandleProfile<Integration>, IWantTheEndpointConfig
     {
+        
+
         void IHandleProfile.ProfileActivated()
         {
             Configure.Instance

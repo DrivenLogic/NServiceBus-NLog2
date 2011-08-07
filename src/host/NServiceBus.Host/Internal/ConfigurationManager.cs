@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using NLog;
 using NServiceBus.ObjectBuilder;
-using log4net;
 
 namespace NServiceBus.Host.Internal
 {
@@ -49,7 +49,7 @@ namespace NServiceBus.Host.Internal
                 var toRun = thing;
                 Action onstart = () =>
                 {
-                    var logger = LogManager.GetLogger(toRun.GetType());
+                    var logger = LogManager.GetLogger(toRun.GetType().ToString());
                     try
                     {
                         logger.Debug("Calling " + toRun.GetType().Name);
@@ -77,7 +77,7 @@ namespace NServiceBus.Host.Internal
             {
                 if (thing != null)
                 {
-                    var logger = LogManager.GetLogger(thing.GetType());
+                    var logger = LogManager.GetLogger(thing.GetType().Name);
                     logger.Debug("Stopping " + thing.GetType().Name);
                     try
                     {
