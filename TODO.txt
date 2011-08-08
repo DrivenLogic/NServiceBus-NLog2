@@ -1,0 +1,2 @@
+
+- Update samples with nlog config

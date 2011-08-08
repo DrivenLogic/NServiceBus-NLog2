@@ -239,6 +239,8 @@
         <in>
           <items>
             <include name="${core.build.dir}\antlr*.dll" />
+            <include name="${core.build.dir}\common.logging.dll"/>
+            <include name="${lib.dir}\log4net.dll"/>
             <include name="${core.build.dir}\Interop.MSMQ.dll" />
             <include name="${core.build.dir}\Spring.Core.dll"/>
             <include name="${core.build.dir}\NHibernate*.dll" />
@@ -431,7 +433,7 @@
 
   <target name="compile_samples" depends="prepare_binaries">
 	<foreach 	item="String"
-					in="AsyncPages,FullDuplex,PubSub,Manufacturing,GenericHost,Versioning,WcfIntegration"
+					in="AsyncPages,FullDuplex,PubSub,Manufacturing,Versioning,WcfIntegration"
 					delim=","
 					property="pathToBuild">
 		<echo message="${pathToBuild}" />
@@ -482,7 +484,7 @@
     </copy>
     <copy todir="${binaries.dir}">
       <fileset basedir="${lib.dir}">
-        <include name="log4net.dll" />
+				 <include name="log4net.dll" />        
         <include name="nunit.framework.dll" />
       </fileset>
     </copy>
