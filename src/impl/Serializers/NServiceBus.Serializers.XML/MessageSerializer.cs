@@ -6,10 +6,10 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml;
+using NLog;
 using NServiceBus.Serialization;
 using NServiceBus.MessageInterfaces;
 using System.Runtime.Serialization;
-using Common.Logging;
 using NServiceBus.Encryption;
 using NServiceBus.Utils.Reflection;
 using System.Xml.Serialization;
@@ -944,7 +944,7 @@ namespace NServiceBus.Serializers.XML
         [ThreadStatic]
         private static List<Type> namespacesToAdd;
 
-        private static readonly ILog logger = LogManager.GetLogger("NServiceBus.Serializers.XML");
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         #endregion
     }

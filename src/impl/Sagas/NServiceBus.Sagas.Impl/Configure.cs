@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using NLog;
 using NServiceBus.ObjectBuilder;
 using System.Reflection;
 using NServiceBus.Saga;
-using Common.Logging;
 
 namespace NServiceBus.Sagas.Impl
 {
@@ -488,7 +488,8 @@ namespace NServiceBus.Sagas.Impl
 
         private static readonly IConfigureHowToFindSagaWithMessage SagaMessageFindingConfiguration = new ConfigureHowToFindSagaWithMessageDispatcher();
 
-        internal static readonly ILog Logger = LogManager.GetLogger("NServiceBus");
+        internal static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         #endregion
     }
 }

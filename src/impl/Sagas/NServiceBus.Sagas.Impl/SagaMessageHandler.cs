@@ -1,7 +1,7 @@
 using System;
+using NLog;
 using NServiceBus.ObjectBuilder;
 using System.Reflection;
-using Common.Logging;
 using System.Collections.Generic;
 using NServiceBus.Saga;
 
@@ -227,9 +227,9 @@ namespace NServiceBus.Sagas.Impl
 
         #endregion
 
-        /// <summary>
-        /// Object used to log information.
-        /// </summary>
-        protected readonly ILog logger = LogManager.GetLogger(typeof(SagaMessageHandler));
+	    /// <summary>
+	    /// Object used to log information.
+	    /// </summary>
+	    protected readonly Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

@@ -21,8 +21,8 @@
 using System;
 using System.Collections.Generic;
 using System.Messaging;
-using Common.Logging;
 using System.Transactions;
+using NLog;
 using NServiceBus.Utils;
 
 namespace NServiceBus.Unicast.Subscriptions.Msmq
@@ -256,8 +256,8 @@ namespace NServiceBus.Unicast.Subscriptions.Msmq
         private readonly List<Entry> entries = new List<Entry>();
         private readonly object locker = new object();
 
-	    private readonly ILog log = LogManager.GetLogger(typeof(ISubscriptionStorage));
+	    private readonly Logger log = LogManager.GetCurrentClassLogger();
 
-        #endregion
+	    #endregion
     }
 }

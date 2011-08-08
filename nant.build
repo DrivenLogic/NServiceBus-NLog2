@@ -482,6 +482,7 @@
     </copy>
     <copy todir="${binaries.dir}">
       <fileset basedir="${lib.dir}">
+        <include name="log4net.dll" />
         <include name="nunit.framework.dll" />
       </fileset>
     </copy>

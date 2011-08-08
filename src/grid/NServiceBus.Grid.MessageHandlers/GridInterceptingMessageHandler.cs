@@ -1,7 +1,7 @@
 
 
 using System;
-using Common.Logging;
+using NLog;
 using NServiceBus.Grid.Messages;
 using NServiceBus.Unicast;
 using NServiceBus.Unicast.Transport;
@@ -82,6 +82,6 @@ namespace NServiceBus.Grid.MessageHandlers
             }
         }
 
-        private static readonly ILog logger = LogManager.GetLogger("NServicebus.Grid");
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

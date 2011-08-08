@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
-using Common.Logging;
+using NLog;
 
 namespace NServiceBus.Encryption.Rijndael
 {
@@ -71,6 +71,6 @@ namespace NServiceBus.Encryption.Rijndael
             }
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (EncryptionService));
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

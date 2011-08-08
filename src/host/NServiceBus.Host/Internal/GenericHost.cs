@@ -26,14 +26,6 @@ namespace NServiceBus.Host.Internal
         {
             try
             {
-                if (specifier is IWantCustomLogging)
-                    (specifier as IWantCustomLogging).Init();
-                else
-                {
-                    var loggingConfigurer = profileManager.GetLoggingConfigurer();
-                    loggingConfigurer.Configure(specifier);
-                }
-
                 if (specifier is IWantCustomInitialization)
                 {
                     if (specifier is IWantCustomLogging)

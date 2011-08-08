@@ -1,6 +1,6 @@
+using NLog;
 using NServiceBus.Grid.Messages;
 using NServiceBus.Unicast.Transport;
-using Common.Logging;
 
 namespace NServiceBus.Grid.MessageHandlers
 {
@@ -34,6 +34,6 @@ namespace NServiceBus.Grid.MessageHandlers
             logger.Info(string.Format("{0} worker threads.", result));
         }
 
-        private static readonly ILog logger = LogManager.GetLogger("NServicebus.Grid");
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

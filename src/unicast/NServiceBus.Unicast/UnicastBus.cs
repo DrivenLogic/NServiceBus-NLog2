@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Principal;
 using System.Threading;
-using Common.Logging;
+using NLog;
 using NServiceBus.Messages;
 using NServiceBus.Unicast.Subscriptions;
 using NServiceBus.Unicast.Transport;
@@ -1522,7 +1522,8 @@ namespace NServiceBus.Unicast
         private volatile bool starting;
         private readonly object startLocker = new object();
 
-        private readonly static ILog Log = LogManager.GetLogger(typeof(UnicastBus));
-        #endregion
+	    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+	    #endregion
     }
 }

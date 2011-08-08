@@ -1,6 +1,6 @@
 using System;
 using System.Threading;
-using Common.Logging;
+using NLog;
 
 namespace NServiceBus.Unicast
 {
@@ -47,13 +47,13 @@ namespace NServiceBus.Unicast
                 }
                 catch (Exception e)
                 {
-                    log.Error(this.callback, e);
+                    log.ErrorException(this.callback.Method.ToString(), e);
                 }
 
             this.sync.Set();
         }
 
-        private readonly static ILog log = LogManager.GetLogger(typeof(UnicastBus));
+        private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
         #region IAsyncResult Members
 

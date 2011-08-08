@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Messaging;
 using System.Threading;
 using System.Transactions;
-using Common.Logging;
+using NLog;
 using NServiceBus.Serialization;
 using System.Xml.Serialization;
 using System.IO;
@@ -929,7 +929,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
 
 	    [ThreadStatic] private static volatile string _messageId;
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (MsmqTransport));
+	    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly XmlSerializer headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
         #endregion

@@ -1,6 +1,6 @@
+using NLog;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.Config;
-using Common.Logging;
 
 namespace NServiceBus.Unicast.Subscriptions.Msmq.Config
 {
@@ -13,7 +13,7 @@ namespace NServiceBus.Unicast.Subscriptions.Msmq.Config
     {
         /// <summary>
         /// Wraps the given configuration object but stores the same 
-        /// builder and configurer properties.
+        /// builder and configure properties.
         /// </summary>
         /// <param name="config"></param>
         public void Configure(Configure config)
@@ -32,6 +32,6 @@ namespace NServiceBus.Unicast.Subscriptions.Msmq.Config
             storageConfig.ConfigureProperty(s => s.Queue, q);
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (MsmqSubscriptionStorage));
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Common.Logging;
+using NLog;
 using NServiceBus.Config;
 using NServiceBus.Encryption.Rijndael;
 using NServiceBus.ObjectBuilder;
@@ -31,6 +31,6 @@ namespace NServiceBus
             return config;
         }
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(RijndaelEncryptionServiceConfig));
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }
