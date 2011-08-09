@@ -498,7 +498,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
                 }
                 catch (Exception e)
                 {
-                    Logger.Error("Could not extract message data.", e);
+                    Logger.ErrorException("Could not extract message data.", e);
 
                     MoveToErrorQueue(m);
 
@@ -609,7 +609,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
 
-                Logger.Error("Problem in peeking a message from queue: " + Enum.GetName(typeof(MessageQueueErrorCode), mqe.MessageQueueErrorCode), mqe);
+                Logger.ErrorException("Problem in peeking a message from queue: " + Enum.GetName(typeof(MessageQueueErrorCode), mqe.MessageQueueErrorCode), mqe);
                 return false;
             }
             catch (ObjectDisposedException)
@@ -622,7 +622,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
             }
             catch (Exception e)
             {
-                Logger.Error("Error in peeking a message from queue.", e);
+                Logger.ErrorException("Error in peeking a message from queue.", e);
                 return false;
             }
         }
@@ -639,12 +639,12 @@ namespace NServiceBus.Unicast.Transport.Msmq
                 if (mqe.MessageQueueErrorCode == MessageQueueErrorCode.IOTimeout)
                     return null;
 
-                Logger.Error("Problem in receiving message from queue: " + Enum.GetName(typeof(MessageQueueErrorCode), mqe.MessageQueueErrorCode), mqe);
+                Logger.ErrorException("Problem in receiving message from queue: " + Enum.GetName(typeof(MessageQueueErrorCode), mqe.MessageQueueErrorCode), mqe);
                 return null;
             }
             catch(Exception e)
             {
-                Logger.Error("Error in receiving message from queue.", e);
+                Logger.ErrorException("Error in receiving message from queue.", e);
                 return null;
             }
         }
@@ -866,7 +866,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
             }
             catch (Exception e)
             {
-                Logger.Error("Failed raising 'finished message processing' event.", e);
+                Logger.ErrorException("Failed raising 'finished message processing' event.", e);
                 return false;
             }
 

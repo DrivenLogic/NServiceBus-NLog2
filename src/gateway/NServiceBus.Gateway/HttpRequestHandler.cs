@@ -115,7 +115,7 @@ namespace NServiceBus.Gateway
             }
             catch (Exception ex)
             {
-                Logger.Error("Unexpected error", ex);
+                Logger.ErrorException("Unexpected error", ex);
                 try
                 {
                     ctx.Response.StatusCode = 502;

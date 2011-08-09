@@ -57,7 +57,7 @@ namespace NServiceBus.Host.Internal
                     }
                     catch (Exception ex)
                     {
-                        logger.Error("Problem occurred when starting the endpoint.", ex);
+                        logger.ErrorException("Problem occurred when starting the endpoint.", ex);
 
                         //don't rethrow so that thread doesn't die before log message is shown.
                     }
@@ -85,7 +85,7 @@ namespace NServiceBus.Host.Internal
                     }
                     catch (Exception ex)
                     {
-                        logger.Error(thing.GetType().Name + " could not be stopped.", ex);
+                        logger.ErrorException(thing.GetType().Name + " could not be stopped.", ex);
 
                         // no need to rethrow, closing the process anyway
                     }

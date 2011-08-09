@@ -5,3 +5,4 @@ A fork of nServiceBus 2.5 that seeks to support the following goals:
 
 Note: Internally TopShelf dependencies still hold a reference to log4net
 and Spring.core holds a reference to Common.logging
+

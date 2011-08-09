@@ -49,7 +49,7 @@ namespace NServiceBus.Utils
             }
             catch (Exception ex)
             {
-                Logger.Error(string.Format("Could not create queue {0} or check its existence. Processing will still continue.", queueName), ex);
+                Logger.ErrorException(string.Format("Could not create queue {0} or check its existence. Processing will still continue.", queueName), ex);
             }
         }
         

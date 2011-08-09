@@ -62,7 +62,7 @@ namespace NServiceBus.Utils
                 }
                 catch (Exception e)
                 {
-                    Logger.Error("Exception reached top level.", e);
+                    Logger.ErrorException("Exception reached top level.", e);
                 }
             }
 

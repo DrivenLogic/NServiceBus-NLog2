@@ -883,7 +883,7 @@ namespace NServiceBus.Unicast
                 }
                 catch (Exception e)
                 {
-                    Log.Error(messageHandlerType.Name + " Failed handling message.", GetInnermostException(e));
+                    Log.ErrorException(messageHandlerType.Name + " Failed handling message.", e);
 
                     throw;
                 }
@@ -1111,7 +1111,7 @@ namespace NServiceBus.Unicast
                 }
                 catch (Exception ex)
                 {
-                    Log.Error("Module " + module.GetType().FullName + " failed when handling error.", ex);
+                    Log.ErrorException("Module " + module.GetType().FullName + " failed when handling error.", ex);
                     exceptionThrown = true;
                 }
 
@@ -1178,7 +1178,7 @@ namespace NServiceBus.Unicast
                 }
                 catch(Exception ex)
                 {
-                    Log.Error("Problem loading message type: " + key, ex);
+                    Log.ErrorException("Problem loading message type: " + key, ex);
                 }
 
                 try
