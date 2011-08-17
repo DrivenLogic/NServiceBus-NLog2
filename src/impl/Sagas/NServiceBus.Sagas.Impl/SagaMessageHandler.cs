@@ -230,6 +230,6 @@ namespace NServiceBus.Sagas.Impl
 	    /// <summary>
 	    /// Object used to log information.
 	    /// </summary>
-	    protected readonly Logger logger = LogManager.GetCurrentClassLogger();
+	    private readonly Logger logger = LogManager.GetLogger("SagaMessageHandler");
     }
 }
