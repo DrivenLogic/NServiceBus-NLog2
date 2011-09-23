@@ -31,8 +31,7 @@ namespace NServiceBus.Utils
 
             if (machine != Environment.MachineName)
             {
-                Logger.Debug("Queue is on remote machine.");
-                Logger.Debug("If this does not succeed (like if the remote machine is disconnected), processing will continue.");
+                Logger.Debug("Queue is on remote machine. If this does not succeed (like if the remote machine is disconnected), processing will continue.");
             }
 
             Logger.Debug(string.Format("Checking if queue exists: {0}.", queueName));
@@ -42,8 +41,7 @@ namespace NServiceBus.Utils
                 if (MessageQueue.Exists(q))
                     return;
 
-                Logger.Warn("Queue " + q + " does not exist.");
-                Logger.Debug("Going to create queue: " + q);
+                Logger.Warn("Queue '" + q + "' does not exist. Going to create queue...");
 
                 CreateQueue(q);
             }

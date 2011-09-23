@@ -272,6 +272,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
             {
                 MsmqUtilities.CreateQueueIfNecessary(InputQueue);
                 MsmqUtilities.CreateQueueIfNecessary(ErrorQueue);
+                MsmqUtilities.CreateQueueIfNecessary(ForwardReceivedMessagesTo);
             }
         }
 
@@ -470,7 +471,9 @@ namespace NServiceBus.Unicast.Transport.Msmq
             {
                 if (HandledMaxRetries(m.Id))
                 {
-                    Logger.Error(string.Format("Message has failed the maximum number of times allowed, ID={0}.", m.Id));
+                    string id = GetRealMessageId(m);
+
+                    Logger.Error(string.Format("Message has failed the maximum number of times allowed, ID={0}.", id));
                     
                     MoveToErrorQueue(m);
                     OnFinishedMessageProcessing();
@@ -530,7 +533,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
             catch (MessageQueueException ex)
             {
                 if (ex.MessageQueueErrorCode == MessageQueueErrorCode.QueueNotFound)
-                    throw new ConfigurationErrorsException("The destination queue '" + destination +
+                    Logger.Warn("The destination queue '" + destination +
                                                      "' could not be found. You may have misconfigured the ForwardReceivedMessagesTo attribute of UnicastBusConfig."
                                                     , ex);
 
@@ -682,7 +685,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
         {
 		    var result = new TransportMessage
 		                     {
-		                         Id = m.Id,
+		                         Id = GetRealMessageId(m),
 		                         CorrelationId =
 		                             (m.CorrelationId == "00000000-0000-0000-0000-000000000000\\0"
 		                                  ? null
@@ -694,8 +697,7 @@ namespace NServiceBus.Unicast.Transport.Msmq
 		                         MessageIntent = Enum.IsDefined(typeof(MessageIntentEnum), m.AppSpecific) ? (MessageIntentEnum)m.AppSpecific : MessageIntentEnum.Send
                              };
 
-		    UpdateMessageIdBasedOnResponseFromErrorQueue(result, m);
-		    FillIdForCorrelationAndWindowsIdentity(result, m);
+            FillIdForCorrelationAndWindowsIdentity(result, m);
 
             string failedQueue = GetFailedQueue(m);
             if (failedQueue != null)
@@ -739,6 +741,25 @@ namespace NServiceBus.Unicast.Transport.Msmq
         }
 
         /// <summary>
+        /// Gets the real message ID (which is different than the MSMQ message ID) in the case
+        /// where the message was returned from the error queue.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public static string GetRealMessageId(Message m)
+        {
+            if (m.Label != null && m.Label.Contains(ORIGINALID))
+            {
+                int idStartIndex = m.Label.IndexOf(string.Format("<{0}>", ORIGINALID)) + ORIGINALID.Length + 2;
+                int idCount = m.Label.IndexOf(string.Format("</{0}>", ORIGINALID)) - idStartIndex;
+
+                return m.Label.Substring(idStartIndex, idCount);
+            }
+
+            return m.Id;
+        }
+
+        /// <summary>
         /// Gets the label of the message stripping out the failed queue.
         /// </summary>
         /// <param name="m"></param>
@@ -777,20 +798,6 @@ namespace NServiceBus.Unicast.Transport.Msmq
                 int winCount = m.Label.IndexOf(string.Format("</{0}>", WINDOWSIDENTITYNAME)) - winStartIndex;
 
                 result.WindowsIdentityName = m.Label.Substring(winStartIndex, winCount);
-            }
-        }
-
-        private static void UpdateMessageIdBasedOnResponseFromErrorQueue(TransportMessage result, Message m)
-        {
-            if (m.Label == null)
-                return;
-
-            if (m.Label.Contains(ORIGINALID))
-            {
-                int idStartIndex = m.Label.IndexOf(string.Format("<{0}>", ORIGINALID)) + ORIGINALID.Length + 2;
-                int idCount = m.Label.IndexOf(string.Format("</{0}>", ORIGINALID)) - idStartIndex;
-
-                result.Id = m.Label.Substring(idStartIndex, idCount);
             }
         }
 
