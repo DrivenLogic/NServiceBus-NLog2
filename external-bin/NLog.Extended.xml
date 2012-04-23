@@ -45,93 +45,6 @@
             </summary>
             <docgen category='Rendering Options' order='10' />
         </member>
-        <member name="T:NLog.Web.NLogHttpModule">
-            <summary>
-            ASP.NET HttpModule that enables NLog to hook BeginRequest and EndRequest events easily.
-            </summary>
-        </member>
-        <member name="M:NLog.Web.NLogHttpModule.Init(System.Web.HttpApplication)">
-            <summary>
-            Initializes the HttpModule.
-            </summary>
-            <param name="application">
-            ASP.NET application.
-            </param>
-        </member>
-        <member name="M:NLog.Web.NLogHttpModule.Dispose">
-            <summary>
-            Disposes the module.
-            </summary>
-        </member>
-        <member name="E:NLog.Web.NLogHttpModule.EndRequest">
-            <summary>
-            Event to be raised at the end of each HTTP Request.
-            </summary>
-        </member>
-        <member name="E:NLog.Web.NLogHttpModule.BeginRequest">
-            <summary>
-            Event to be raised at the beginning of each HTTP Request.
-            </summary>
-        </member>
-        <member name="T:NLog.Targets.AspNetTraceTarget">
-            <summary>
-            Writes log messages to the ASP.NET trace.
-            </summary>
-            <seealso href="http://nlog-project.org/wiki/AspNetTrace_target">Documentation on NLog Wiki</seealso>
-            <remarks>
-            Log entries can then be viewed by navigating to http://server/path/Trace.axd.
-            </remarks>
-        </member>
-        <member name="M:NLog.Targets.AspNetTraceTarget.Write(NLog.LogEventInfo)">
-            <summary>
-            Writes the specified logging event to the ASP.NET Trace facility. 
-            If the log level is greater than or equal to <see cref="F:NLog.LogLevel.Warn"/> it uses the
-            System.Web.TraceContext.Warn method, otherwise it uses
-            System.Web.TraceContext.Write method.
-            </summary>
-            <param name="logEvent">The logging event.</param>
-        </member>
-        <member name="T:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer">
-            <summary>
-            ASP.NET Session variable.
-            </summary>
-            <remarks>
-            Use this layout renderer to insert the value of the specified variable stored 
-            in the ASP.NET Session dictionary.
-            </remarks>
-            <example>
-            <para>You can set the value of an ASP.NET Session variable by using the following code:</para>
-            <code lang="C#">
-            <![CDATA[
-            HttpContext.Current.Session["myvariable"] = 123;
-            HttpContext.Current.Session["stringvariable"] = "aaa BBB";
-            HttpContext.Current.Session["anothervariable"] = DateTime.Now;
-            ]]>
-            </code>
-            <para>Example usage of ${aspnet-session}:</para>
-            <code lang="NLog Layout Renderer">
-            ${aspnet-session:variable=myvariable} - produces "123"
-            ${aspnet-session:variable=anothervariable} - produces "01/01/2006 00:00:00"
-            ${aspnet-session:variable=anothervariable:culture=pl-PL} - produces "2006-01-01 00:00:00"
-            ${aspnet-session:variable=myvariable:padding=5} - produces "  123"
-            ${aspnet-session:variable=myvariable:padding=-5} - produces "123  "
-            ${aspnet-session:variable=stringvariable:upperCase=true} - produces "AAA BBB"
-            </code>
-            </example>
-        </member>
-        <member name="M:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
-            <summary>
-            Renders the specified ASP.NET Session value and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
-        </member>
-        <member name="P:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer.Variable">
-            <summary>
-            Gets or sets the session variable name.
-            </summary>
-            <docgen category='Rendering Options' order='10' />
-        </member>
         <member name="T:NLog.LayoutRenderers.AspNetRequestValueLayoutRenderer">
             <summary>
             ASP.NET Request variable.
@@ -187,6 +100,196 @@
             Gets or sets the ServerVariables item to be rendered.
             </summary>
             <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="T:NLog.LayoutRenderers.AspNetSessionIDLayoutRenderer">
+            <summary>
+            ASP.NET Session ID.
+            </summary>                 
+        </member>
+        <member name="M:NLog.LayoutRenderers.AspNetSessionIDLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the ASP.NET Session ID appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="T:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer">
+            <summary>
+            ASP.NET Session variable.
+            </summary>
+            <remarks>
+            Use this layout renderer to insert the value of the specified variable stored 
+            in the ASP.NET Session dictionary.
+            </remarks>
+            <example>
+            <para>You can set the value of an ASP.NET Session variable by using the following code:</para>
+            <code lang="C#">
+            <![CDATA[
+            HttpContext.Current.Session["myvariable"] = 123;
+            HttpContext.Current.Session["stringvariable"] = "aaa BBB";
+            HttpContext.Current.Session["anothervariable"] = DateTime.Now;
+            ]]>
+            </code>
+            <para>Example usage of ${aspnet-session}:</para>
+            <code lang="NLog Layout Renderer">
+            ${aspnet-session:variable=myvariable} - produces "123"
+            ${aspnet-session:variable=anothervariable} - produces "01/01/2006 00:00:00"
+            ${aspnet-session:variable=anothervariable:culture=pl-PL} - produces "2006-01-01 00:00:00"
+            ${aspnet-session:variable=myvariable:padding=5} - produces "  123"
+            ${aspnet-session:variable=myvariable:padding=-5} - produces "123  "
+            ${aspnet-session:variable=stringvariable:upperCase=true} - produces "AAA BBB"
+            </code>
+            </example>
+        </member>
+        <member name="M:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP.NET Session value and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="P:NLog.LayoutRenderers.AspNetSessionValueLayoutRenderer.Variable">
+            <summary>
+            Gets or sets the session variable name.
+            </summary>
+            <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="T:NLog.LayoutRenderers.AspNetUserAuthTypeLayoutRenderer">
+            <summary>
+            ASP.NET User variable.
+            </summary>
+        </member>
+        <member name="M:NLog.LayoutRenderers.AspNetUserAuthTypeLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP.NET User.Identity.AuthenticationType variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="T:NLog.LayoutRenderers.AspNetUserIdentityLayoutRenderer">
+            <summary>
+            ASP.NET User variable.
+            </summary>
+        </member>
+        <member name="M:NLog.LayoutRenderers.AspNetUserIdentityLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP.NET User.Identity.Name variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="T:NLog.Targets.AspNetTraceTarget">
+            <summary>
+            Writes log messages to the ASP.NET trace.
+            </summary>
+            <seealso href="http://nlog-project.org/wiki/AspNetTrace_target">Documentation on NLog Wiki</seealso>
+            <remarks>
+            Log entries can then be viewed by navigating to http://server/path/Trace.axd.
+            </remarks>
+        </member>
+        <member name="M:NLog.Targets.AspNetTraceTarget.Write(NLog.LogEventInfo)">
+            <summary>
+            Writes the specified logging event to the ASP.NET Trace facility. 
+            If the log level is greater than or equal to <see cref="F:NLog.LogLevel.Warn"/> it uses the
+            System.Web.TraceContext.Warn method, otherwise it uses
+            System.Web.TraceContext.Write method.
+            </summary>
+            <param name="logEvent">The logging event.</param>
+        </member>
+        <member name="T:NLog.Targets.MessageQueueTarget">
+            <summary>
+            Writes log message to the specified message queue handled by MSMQ.
+            </summary>
+            <seealso href="http://nlog-project.org/wiki/MessageQueue_target">Documentation on NLog Wiki</seealso>
+            <example>
+            <p>
+            To set up the target in the <a href="config.html">configuration file</a>, 
+            use the following syntax:
+            </p>
+            <code lang="XML" source="examples/targets/Configuration File/MSMQ/Simple/NLog.config" />
+            <p>
+            You can use a single target to write to multiple queues (similar to writing to multiple files with the File target).
+            </p>
+            <code lang="XML" source="examples/targets/Configuration File/MSMQ/Multiple/NLog.config" />
+            <p>
+            The above examples assume just one target and a single rule. 
+            More configuration options are described <a href="config.html">here</a>.
+            </p>
+            <p>
+            To set up the log target programmatically use code like this:
+            </p>
+            <code lang="C#" source="examples/targets/Configuration API/MSMQ/Simple/Example.cs" />
+            </example>
+        </member>
+        <member name="M:NLog.Targets.MessageQueueTarget.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Targets.MessageQueueTarget"/> class.
+            </summary>
+            <remarks>
+            The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+            </remarks>
+        </member>
+        <member name="M:NLog.Targets.MessageQueueTarget.Write(NLog.LogEventInfo)">
+            <summary>
+            Writes the specified logging event to a queue specified in the Queue 
+            parameter.
+            </summary>
+            <param name="logEvent">The logging event.</param>
+        </member>
+        <member name="M:NLog.Targets.MessageQueueTarget.PrepareMessage(NLog.LogEventInfo)">
+            <summary>
+            Prepares a message to be sent to the message queue.
+            </summary>
+            <param name="logEvent">The log event to be used when calculating label and text to be written.</param>
+            <returns>The message to be sent.</returns>
+            <remarks>
+            You may override this method in inheriting classes
+            to provide services like encryption or message 
+            authentication.
+            </remarks>
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.Queue">
+            <summary>
+            Gets or sets the name of the queue to write to.
+            </summary>
+            <remarks>
+            To write to a private queue on a local machine use <c>.\private$\QueueName</c>.
+            For other available queue names, consult MSMQ documentation.
+            </remarks>
+            <docgen category='Queue Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.Label">
+            <summary>
+            Gets or sets the label to associate with each message.
+            </summary>
+            <remarks>
+            By default no label is associated.
+            </remarks>
+            <docgen category='Queue Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.CreateQueueIfNotExists">
+            <summary>
+            Gets or sets a value indicating whether to create the queue if it doesn't exists.
+            </summary>
+            <docgen category='Queue Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.Recoverable">
+            <summary>
+            Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
+            </summary>
+            <docgen category='Queue Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.Encoding">
+            <summary>
+            Gets or sets the encoding to be used when writing text to the queue.
+            </summary>
+            <docgen category='Layout Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.MessageQueueTarget.UseXmlEncoding">
+            <summary>
+            Gets or sets a value indicating whether to use the XML format when serializing message.
+            </summary>
+            <docgen category='Layout Options' order='10' />
         </member>
         <member name="T:NLog.Targets.Wrappers.AspNetBufferingTargetWrapper">
             <summary>
@@ -297,136 +400,33 @@
             </summary>
             <docgen category='Buffering Options' order='100' />
         </member>
-        <member name="T:NLog.LayoutRenderers.AspNetSessionIDLayoutRenderer">
+        <member name="T:NLog.Web.NLogHttpModule">
             <summary>
-            ASP.NET Session ID.
-            </summary>                 
-        </member>
-        <member name="M:NLog.LayoutRenderers.AspNetSessionIDLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
-            <summary>
-            Renders the ASP.NET Session ID appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
-        </member>
-        <member name="T:NLog.LayoutRenderers.AspNetUserIdentityLayoutRenderer">
-            <summary>
-            ASP.NET User variable.
+            ASP.NET HttpModule that enables NLog to hook BeginRequest and EndRequest events easily.
             </summary>
         </member>
-        <member name="M:NLog.LayoutRenderers.AspNetUserIdentityLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+        <member name="M:NLog.Web.NLogHttpModule.Init(System.Web.HttpApplication)">
             <summary>
-            Renders the specified ASP.NET User.Identity.Name variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            Initializes the HttpModule.
             </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
+            <param name="application">
+            ASP.NET application.
+            </param>
         </member>
-        <member name="T:NLog.Targets.MessageQueueTarget">
+        <member name="M:NLog.Web.NLogHttpModule.Dispose">
             <summary>
-            Writes log message to the specified message queue handled by MSMQ.
-            </summary>
-            <seealso href="http://nlog-project.org/wiki/MessageQueue_target">Documentation on NLog Wiki</seealso>
-            <example>
-            <p>
-            To set up the target in the <a href="config.html">configuration file</a>, 
-            use the following syntax:
-            </p>
-            <code lang="XML" source="examples/targets/Configuration File/MSMQ/Simple/NLog.config" />
-            <p>
-            You can use a single target to write to multiple queues (similar to writing to multiple files with the File target).
-            </p>
-            <code lang="XML" source="examples/targets/Configuration File/MSMQ/Multiple/NLog.config" />
-            <p>
-            The above examples assume just one target and a single rule. 
-            More configuration options are described <a href="config.html">here</a>.
-            </p>
-            <p>
-            To set up the log target programmatically use code like this:
-            </p>
-            <code lang="C#" source="examples/targets/Configuration API/MSMQ/Simple/Example.cs" />
-            </example>
-        </member>
-        <member name="M:NLog.Targets.MessageQueueTarget.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.MessageQueueTarget"/> class.
-            </summary>
-            <remarks>
-            The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-            </remarks>
-        </member>
-        <member name="M:NLog.Targets.MessageQueueTarget.Write(NLog.LogEventInfo)">
-            <summary>
-            Writes the specified logging event to a queue specified in the Queue 
-            parameter.
-            </summary>
-            <param name="logEvent">The logging event.</param>
-        </member>
-        <member name="M:NLog.Targets.MessageQueueTarget.PrepareMessage(NLog.LogEventInfo)">
-            <summary>
-            Prepares a message to be sent to the message queue.
-            </summary>
-            <param name="logEvent">The log event to be used when calculating label and text to be written.</param>
-            <returns>The message to be sent.</returns>
-            <remarks>
-            You may override this method in inheriting classes
-            to provide services like encryption or message 
-            authentication.
-            </remarks>
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.Queue">
-            <summary>
-            Gets or sets the name of the queue to write to.
-            </summary>
-            <remarks>
-            To write to a private queue on a local machine use <c>.\private$\QueueName</c>.
-            For other available queue names, consult MSMQ documentation.
-            </remarks>
-            <docgen category='Queue Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.Label">
-            <summary>
-            Gets or sets the label to associate with each message.
-            </summary>
-            <remarks>
-            By default no label is associated.
-            </remarks>
-            <docgen category='Queue Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.CreateQueueIfNotExists">
-            <summary>
-            Gets or sets a value indicating whether to create the queue if it doesn't exists.
-            </summary>
-            <docgen category='Queue Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.Recoverable">
-            <summary>
-            Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
-            </summary>
-            <docgen category='Queue Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.Encoding">
-            <summary>
-            Gets or sets the encoding to be used when writing text to the queue.
-            </summary>
-            <docgen category='Layout Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.MessageQueueTarget.UseXmlEncoding">
-            <summary>
-            Gets or sets a value indicating whether to use the XML format when serializing message.
-            </summary>
-            <docgen category='Layout Options' order='10' />
-        </member>
-        <member name="T:NLog.LayoutRenderers.AspNetUserAuthTypeLayoutRenderer">
-            <summary>
-            ASP.NET User variable.
+            Disposes the module.
             </summary>
         </member>
-        <member name="M:NLog.LayoutRenderers.AspNetUserAuthTypeLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+        <member name="E:NLog.Web.NLogHttpModule.EndRequest">
             <summary>
-            Renders the specified ASP.NET User.Identity.AuthenticationType variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            Event to be raised at the end of each HTTP Request.
             </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="E:NLog.Web.NLogHttpModule.BeginRequest">
+            <summary>
+            Event to be raised at the beginning of each HTTP Request.
+            </summary>
         </member>
     </members>
 </doc>
