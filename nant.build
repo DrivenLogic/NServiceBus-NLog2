@@ -240,7 +240,7 @@
           <items>
             <include name="${core.build.dir}\antlr*.dll" />
             <include name="${core.build.dir}\common.logging.dll"/>
-            <include name="${lib.dir}\log4net.dll"/>
+            <include name="${lib.dir}\common.logging.log4net.dll"/>
             <include name="${core.build.dir}\Interop.MSMQ.dll" />
             <include name="${core.build.dir}\Spring.Core.dll"/>
             <include name="${core.build.dir}\NHibernate*.dll" />
@@ -432,21 +432,28 @@
   </target>
 
   <target name="compile_samples" depends="prepare_binaries">
+  <!-- 
+  
+  [AS] .2012.04.24.2109 
+  Don't Build Samples - not supported on this fork. 
+	
 	<foreach 	item="String"
-					in="AsyncPages,FullDuplex,PubSub,Manufacturing,Versioning,WcfIntegration"
+					in="AsyncPages,FullDuplex,PubSub,Manufacturing,GenericHost,Versioning,WcfIntegration"
 					delim=","
 					property="pathToBuild">
 		<echo message="${pathToBuild}" />
 		<exec program="${msbuild}" commandline="/p:Configuration=${project.config} ${msbuild.targetframework}"
 					workingdir="${samples.dir}\${pathToBuild}" />
 	</foreach>
-
+	-->
  	<!-- exclude the WebServiceBridge sample until we can figure out why it fails on the CI server when building 4.0 -->
+	<!-- 
 	<if test="${targetframework != 'net-4.0'}">
 		<exec	program="${msbuild}" 
 			commandline="/p:Configuration=${project.config} ${msbuild.targetframework}"
 			workingdir="${samples.dir}\WebServiceBridge" />
 	</if>
+	-->
   </target>
 
   <target name="BuildMsmqUtils" depends="compile_msmqutils">
@@ -484,7 +491,7 @@
     </copy>
     <copy todir="${binaries.dir}">
       <fileset basedir="${lib.dir}">
-				 <include name="log4net.dll" />        
+        <include name="log4net.dll" />
         <include name="nunit.framework.dll" />
       </fileset>
     </copy>
@@ -651,6 +658,8 @@
 	  <copy todir="${release.dir}\dependencies" flatten="true">
 		  <fileset basedir="${trunk.dir}" >
 			  <include name="${core.build.dir}\antlr*.dll" />
+			  <include name="${core.build.dir}\common.logging.dll"/>
+			  <include name="${lib.dir}\common.logging.log4net.dll"/>
 			  <include name="${core.build.dir}\Interop.MSMQ.dll" />
 			  <include name="${core.build.dir}\AutoFac.dll"/>
 			  <include name="${core.build.dir}\Spring.Core.dll" />

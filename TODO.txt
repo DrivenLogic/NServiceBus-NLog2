@@ -1,2 +1,2 @@
 
-- Update samples with nlog config
+- Add autofac version number to the readme. 
